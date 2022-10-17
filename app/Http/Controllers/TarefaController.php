@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NovaTarefaMail;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class TarefaController extends Controller
 {
@@ -129,5 +130,22 @@ class TarefaController extends Controller
     public function exportacao ($extensao) {
       
         return Excel::download(new TarefasExport, 'lista_de_tarefas.'.$extensao);
+    }
+
+    /**
+     * To export format arquives with DOMPDF
+     *
+     * @param string $extensao
+     * @return void
+     */
+    public function exportar () {
+
+        $tarefas = auth()->user()->tarefas()->get();
+      
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas' => $tarefas]);
+
+        $pdf->setPaper('a4','landscape');
+        //return $pdf->download('lista_de_tarefas.pdf');
+        return $pdf->stream('lista_de_tarefas.pdf');
     }
 }

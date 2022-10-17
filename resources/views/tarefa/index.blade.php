@@ -10,6 +10,7 @@
                         <a href="{{ route('tarefa.exportacao',['extensao' => 'xlsx']) }}" class="float-right">XLSX</a>
                         <a href="{{ route('tarefa.exportacao',['extensao' => 'csv']) }}" class="mr-3 float-right">CSV</a>
                         <a href="{{ route('tarefa.exportacao',['extensao' => 'pdf']) }}" class="mr-3 float-right">PDF</a>
+                        <a href="{{ route('tarefa.exportar') }}" class="mr-3 float-right" target="_blank">PDF_V2</a>
                         <a href="{{ route('tarefa.create') }}" class="mr-3 float-right"><b>Nova Tarefa</b></a>
                     </div>
 
